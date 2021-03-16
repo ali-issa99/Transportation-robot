@@ -10,6 +10,7 @@ const robobtactionSchema = new Schema({
     direction: {
         type:String,
         required: true,
+        
 
     },
     distance: {

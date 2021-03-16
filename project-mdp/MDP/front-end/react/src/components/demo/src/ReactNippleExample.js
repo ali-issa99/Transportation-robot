@@ -77,7 +77,7 @@ export default class ReactNippleExample extends Component {
                         
 
 
-                        fetch("http://localhost:9000/robots", {
+                        fetch("http://localhost:9000/robot", {
                             method: 'POST',
                             headers: {
                                 'Content-Type': 'application/json',

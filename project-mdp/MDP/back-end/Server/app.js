@@ -13,7 +13,7 @@ const indexRouter = require('./routes/index');
 var passport = require ('passport');
 var authenticate= require('./authenticate');
 var config = require('./config');
-
+var cors = require("cors")
 var options={
   prot:1883,
   host:'212.98.137.194',
@@ -52,12 +52,12 @@ connect.then((db) => {
 
 
 
-
 var app = express();
 
 
 
 
+app.use(cors());
 
 
 console.log("Received '"+ "' on '"  + "'");

@@ -31,18 +31,21 @@ class  Home  extends Component {
 
     
     componentDidMount(){
-            fetch("http://localhost:9000/robots",{
+            fetch("http://localhost:9000/robot",{
                 method:'GET',
                 headers:{
               'Content-Type':'application/json'
             }
         })
         .then( function(response){
+           
             return response.json();
         })
            
         .then (move => {
+            console.log("hell0");
             console.log(move);
+            
             this.setState({moves:move});
        
          });
