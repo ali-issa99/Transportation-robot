@@ -8,7 +8,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'font-awesome/css/font-awesome.css';
 import 'bootstrap-social/bootstrap-social.css';
 
-
+import { transitions, positions, Provider as AlertProvider } from 'react-alert'
 
 ReactDOM.render(
   <React.StrictMode>

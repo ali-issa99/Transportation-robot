@@ -9,7 +9,7 @@ const robotrouter = express.Router();
 
 robotrouter.use(bodyParser.json());
 
-
+var messages;
 var options={
     prot:1883,
     host:'212.98.137.194',
@@ -30,15 +30,33 @@ client.on('connect', function () {
 });
 
 client.on('message', function (topic, message) {
+  
 
-    robotaction.create(JSON.parse(message))
-        .then((robotaction) => {
-            console.log('robot created ', robotaction);
-        });
+    messages=message.toString();
+   
 
-    console.log(message.toString())
+    console.log(messages)
 
 });
+
+
+robotrouter.route('/alerts')
+
+.get((req, res, next) => {
+     
+     res.statusCode = 200;
+     res.setHeader('Content-Type', 'application/json');
+     res.json(messages);
+
+     messages=null;
+     
+           
+     
+     });
+   
+                 
+                 
+ 
 
     robotrouter.route('/')
         .get((req, res, next) => {
@@ -52,14 +70,15 @@ client.on('message', function (topic, message) {
                 .catch((err) => next(err));
         })
         .post(authenticate.verifyUser,(req, res, next) => {
-            client.publish('action',JSON.stringify(req.body));
+            
             robotaction.create(req.body)
                 .then((robotaction) => {
                     console.log('robot action  ', robotaction);
-
                     res.statusCode = 200;
                     res.setHeader('Content-Type', 'application/json');
                     res.json(robotaction);
+                    
+                    client.publish('action',JSON.stringify(req.body));
                 }, (err) => next(err))
                 .catch((err) => next(err));
 
@@ -78,6 +97,8 @@ client.on('message', function (topic, message) {
                 }, (err) => next(err))
                 .catch((err) => next(err));
         });
+
+
 
 
     module.exports = robotrouter;

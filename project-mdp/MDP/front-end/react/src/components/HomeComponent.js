@@ -7,31 +7,40 @@ import { Navbar, NavbarBrand, Nav, NavbarToggler, Collapse, NavItem, Jumbotron,
     Button, Modal, ModalHeader, ModalBody,
     Form, FormGroup, Input, Label } from 'reactstrap';
 
+
+
+
 class  Home  extends Component {
 
-
+    intervalID;
     constructor(props) {
+        
         super(props);
          this.state = { moves: [
             {direction:String,distance :String,speed :Number}
-          ],isclicked:false
+          ],isclicked:false,alerts:String,isalert:false
         };
         this.Showstatistics=this.Showstatistics.bind(this);
-   
+     
     }
 
-     
-    
-   
-      
+componentDidMount(){
+        this.getData();
 
-    
+        this.intervalID = setInterval(this.getData.bind(this), 5000);
+     }
+
+     componentWillUnmount() {
+        clearInterval(this.intervalID);
 
 
 
-    
-    componentDidMount(){
-            fetch("http://localhost:9000/robot",{
+     }
+
+     getData = () => {
+            // do something to fetch data from a remote API.
+          
+        fetch("http://localhost:9000/robot",{
                 method:'GET',
                 headers:{
               'Content-Type':'application/json'
@@ -49,8 +58,35 @@ class  Home  extends Component {
             this.setState({moves:move});
        
          });
+
+
+        fetch("http://localhost:9000/robot/alerts",{
+                method:'GET',
+                headers:{
+              'Content-Type':'application/json'
+            }
+        })
+        .then( function(response){
+          
+            return response.json();
+        })
+           
+        .then (alert => {
+            
+            if(alert!=null) {this.setState({alerts:JSON.stringify(alert),isalert:true});}
+            else { this.setState({alerts:null,isalert:false});}
+            
+            
+       
+         });
+        }
+
+
+
         
-    }
+    
+        
+    
 
 
     Showstatistics() {
@@ -66,16 +102,35 @@ class  Home  extends Component {
         
         
     }
-    
+
+  
+   
      
    
  
-   
+    
     
 
     render() {
+
+        if(this.state.isalert)  {
+           
+               this.setState({
+                isalert: false
+            
+               });
+          
+               alert(this.state.alerts)
+         }
+        
+       
+      
         return(
+
+            
             <div className="container contain1 ">
+
+               
                 <div className="row align-items-start">
                     
                                
@@ -113,8 +168,8 @@ class  Home  extends Component {
                       <thead>
                       <tr>
                       <th>Distance </th>
-                      <th>Move</th>
-                      <th>speed</th>
+                      <th>Force</th>
+                      <th>Angle</th>
                       </tr>
                       </thead>
                       <tbody>

@@ -18,9 +18,47 @@ export default class ReactNippleExample extends Component {
         data: undefined,
         direction: Number,
         distance :Number,
-        speed:Number
+        speed:Number,
+        username:String,
+        password:String,
+        token:''
+        
     };
-   
+
+    componentDidMount(){
+
+
+      
+        const payload={
+             username:"aliz",
+             password:"pass"
+  
+
+        }
+        fetch("http://localhost:9000/users/login", {
+            method: 'POST',
+            headers: {
+                'Accept':'application/json',
+                'Content-Type': 'application/json',
+            },
+             body:   JSON.stringify(payload)
+        })
+       .then(res => res.json())
+       .then((data) =>  { this.setState({token:data.token})
+    },
+    (error) => {
+       console.log(error);
+       
+    }
+
+    
+       )}
+
+
+
+
+    
+     
   
     render() {
 
@@ -61,6 +99,9 @@ export default class ReactNippleExample extends Component {
                     onPressure={this.handleJoystickPressure}
                     onMove={(evt, data) =>
 
+                        
+                    
+
 
                         //this.setState({direction: data.direction.x},{distance:data.angle.degree},{speed:data.force}),
                        //console.log(JSON.stringify(data.direction).split(',')[0].split(':')[1] + JSON.stringify(data.direction).split(',')[1].split(':')[1] )
@@ -70,27 +111,51 @@ export default class ReactNippleExample extends Component {
 
                         //console.log(data.direction.x ? data.direction.x : 0)
                        
+                        // this.setState({username:Math.random().toString()},
+                        // this.setState({password:Math.random().toString()}
+                       
+                        // fetch("http://localhost:9000/users/signup", {
+                        //     method: 'POST',
+                        //     headers: {
+                        //         'Accept':'application/json',
+                        //         'Content-Type': 'application/json',
+                        //     },
+                        //      body:   JSON.stringify({ username:"hi",password:"hi"}),
+                        //   })
+
+                        
+
+                        
+                       
+                     
+
+                      
+                            
+
+                            fetch("http://localhost:9000/robot", {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                    'Authorization': 'Bearer ' + this.state.token,
+                                },
+                                 body: JSON.stringify({direction:JSON.stringify(data.direction).split(',')[0].split(':')[1] + JSON.stringify(data.direction).split(',')[1].split(':')[1],distance:data.force,speed:data.angle.degree}),
+                                // body: JSON.stringify({direction:this.state.direction,distance:this.state.distance,speed:this.state.speed})
+                            })
+
+
+
+                        
+
+                       
+
+                            
+                   
+                   
+                  }
                        
  
-                      
                     
-                        
-
-
-                        fetch("http://localhost:9000/robot", {
-                            method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/json',
-                            },
-                             body: JSON.stringify({direction:JSON.stringify(data.direction).split(',')[0].split(':')[1] + JSON.stringify(data.direction).split(',')[1].split(':')[1],distance:data.force,speed:data.angle.degree})
-                            // body: JSON.stringify({direction:this.state.direction,distance:this.state.distance,speed:this.state.speed})
-                            })
-                        
-                    
-                    }
-                    
-                    
-                    
+                                 
                 />
                 </div>
                 <div className="col-12 col-sm-4 offset-sm-1">
