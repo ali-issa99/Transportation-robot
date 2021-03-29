@@ -1,38 +1,74 @@
 import React from 'react';
 
 
-
+import {Redirect} from 'react-router-dom';
 class SignUp extends React.Component{
 
-    state={
+   
 
-        email:'',
+   
 
-        pwd:''
+    constructor(props) {
+        super(props);
+        this.state={
+
+            username:String,
+            password:String
+    
+        }
+    
+        //this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this); 
+        this.handleusername = this.handleusername.bind(this);
+        this.handlepassword = this.handlepassword.bind(this);
+      }
 
 
 
+
+    handleusername(event){
+  
+
+        this.setState({username: event.target.value});
+
+    }
+    handlepassword(event){
+  
+
+        this.setState({password: event.target.value});
+    
     }
 
 
 
-    handleChange = (e) =>{
 
-        const {name,value} = e.target
+    handleSubmit(event){
 
-        this.setState({[name]:value})
+        const payload={
+            username:this.state.username,
+            password:this.state.password
+ 
 
-    }
+       }   
+       fetch("http://localhost:9000/users/signup", {
+           method: 'POST',
+           headers: {
+               'Accept':'application/json',
+               'Content-Type': 'application/json',
+           },
+            body:   JSON.stringify(payload)
+       })
+      .then(res => res.json())
+
+      return  <Redirect to="/home" /> 
+    
+    
+
+ }
+
+  
 
 
-
-    handleSubmit = (e) =>{
-
-        e.preventDefault()
-
-        this.props.isLogin(true)
-
-    }
 
     render(){
 
@@ -48,13 +84,13 @@ class SignUp extends React.Component{
 
                 <div>
 
-                    <form onSubmit = {this.handleSubmit}>
+                    <form >
 
-                        <input type='email' name='email' placeholder='email...' required onChange={this.handleChange}/>
+                        <input onChange={this.handleusername} name='email' placeholder='email...' />
 
-                        <input type='password' name='pwd' placeholder='password...' required onChange={this.handleChange}/>
+                        <input onChange={this.handlepassword}  name='pwd' placeholder='password...' />
 
-                        <button onSubmit={this.handleSubmit}>Sign UP</button>
+                        <button onClick={this.handleSubmit}>Sign UP</button>
 
                     </form>
 
