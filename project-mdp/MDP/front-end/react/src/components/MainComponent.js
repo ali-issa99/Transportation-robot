@@ -75,16 +75,7 @@ class Main extends Component {
 
    
 
-    const PrivateRoute = ({ component: Component, ...rest }) => (
-      <Route {...rest} render={(props) => (
-        this.props.auth.isAuthenticated
-          ? <Component {...props} />
-          : <Redirect to={{
-              pathname: '/home',
-              state: { from: props.location }
-            }} />
-      )} />
-    );
+   
 
 
     return (

@@ -26,7 +26,7 @@ export const loginUser = (creds) => (dispatch) => {
     // We dispatch requestLogin to kickoff the call to the API
     dispatch(requestLogin(creds))
 
-    return fetch(baseUrl + 'users/login', {
+    return fetch('http://localhost:9000/users/login', {
         method: 'POST',
         headers: { 
             'Content-Type':'application/json' 
