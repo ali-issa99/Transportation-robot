@@ -1,4 +1,8 @@
 import React from 'react';
+import { Navbar, NavbarBrand, Nav, NavbarToggler, Collapse, NavItem, Jumbotron,
+    Button, Modal, ModalHeader, ModalBody,
+    Form, FormGroup, Input, Label } from 'reactstrap';
+import { NavLink } from 'react-router-dom';
 import { findAllInRenderedTree } from 'react-dom/test-utils';
 //import {ReactComponent as Logo} from '../../assets/robot.png'
 //import 'src/components/login.css';
@@ -8,81 +12,26 @@ class Login extends React.Component{
 
     constructor(props) {
         super(props);
-        this.state={
-
-            username:String,
-            password:String,
-            token:''
-    
-        }
-    
-        //this.handleChange = this.handleChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this); 
-        this.handleusername = this.handleusername.bind(this);
-        this.handlepassword = this.handlepassword.bind(this);
-      }
-
-
-
-
-    handleusername(event){
-  
-
-        this.setState({username: event.target.value});
-
-    }
-    handlepassword(event){
-  
-
-        this.setState({password: event.target.value});
-    
+        this.state = {
+            
+        };
+     
+        this.handleLogin = this.handleLogin.bind(this);
+        this.handleLogout = this.handleLogout.bind(this);
     }
 
-  
-   handleSubmit(event){
-       
+
+    handleLogin(event) {
+        this.toggleModal();
+        this.props.loginUser({username: this.username.value, password: this.password.value});
+        event.preventDefault();
+
+    }
+
+    handleLogout() {
+        this.props.logoutUser();
+    }
     
-       const payload={
-            username:this.state.username,
-            password:this.state.password
- 
-
-       } 
-     
-        fetch("http://localhost:9000/users/login", {
-            method: 'POST',
-            headers: {
-                'Accept':'application/json',
-                'Content-Type': 'application/json',
-            },
-             body:   JSON.stringify(payload)
-        })
-       .then(res => (res.json()))
-      
-       .then((data) =>  { this.setState({token:data.token})
-    },
-    (error) => {
-       alert(error);
-       
-       
-    })
-
-  // alert(this.state.token)
-
-  
-}
-
-    
-        
-    
-
-     
-  
-
-
-
-   
-
     
     render(){
         return(
@@ -91,11 +40,26 @@ class Login extends React.Component{
                     <img src='/assets/images/robot.png' alt='robot'/>
                 </div>
                 <div>
-                    <form onSubmit = {this.handleSubmit}>
-                        <input  onChange={this.handleusername} name='email' placeholder='email...' />
-                        <input type="password" onChange={this.handlepassword} name='pwd' placeholder='password...'/>
-                        <button onSubmit={this.handleSubmit}>Log In</button>
-                    </form>
+                <Form onSubmit={this.handleLogin}>
+                            <FormGroup>
+                                <Label htmlFor="username">Username</Label>
+                                <Input type="text" id="username" name="username"
+                                    innerRef={(input) => this.username = input} />
+                            </FormGroup>
+                            <FormGroup>
+                                <Label htmlFor="password">Password</Label>
+                                <Input type="password" id="password" name="password"
+                                    innerRef={(input) => this.password = input}  />
+                            </FormGroup>
+                            <FormGroup check>
+                                <Label check>
+                                    <Input type="checkbox" name="remember"
+                                    innerRef={(input) => this.remember = input}  />
+                                    Remember me
+                                </Label>
+                            </FormGroup>
+                            <Button type="submit" value="submit" color="primary">Login</Button>
+                        </Form>
                 </div>
             </div>
         )

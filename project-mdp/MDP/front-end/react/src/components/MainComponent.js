@@ -60,24 +60,24 @@ class Main extends Component {
      
 
     };
+    this.login= this.login.bind(this);
 
   }
 
 
+  login(){
 
+   return (
+
+    <Login auth={this.props.auth} loginUser={this.props.loginUser} logoutUser={this.props.logoutUser} /> 
+
+   )
+
+  }
 
   render() {
 
     //men7ot exact 3ashain marat 3ena url fi /menu/...
-
-
-
-
-   
-
-   
-
-
     return (
 
       <div>
@@ -96,14 +96,11 @@ class Main extends Component {
 
 
               <Route path='/home' component={Home} />
-
-       
-
-          
+    
 
               <Route exact path='/contactus' component={Contact} />
 
-              <Route path= '/login' component={Login}/>
+              <Route path= '/login' component={this.login}/>
 
               <Route path= '/signup' component={SignUp}/>
 
@@ -111,7 +108,7 @@ class Main extends Component {
 
               <Route path='/aboutus' component={AboutComponent} /> 
 
-              <Redirect to="/home" /> 
+              <Redirect to='/login'/> 
 
           </Switch>
           </CSSTransition>
