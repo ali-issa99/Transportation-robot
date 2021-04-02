@@ -7,22 +7,14 @@ require('mongoose-currency').loadType(mongoose);
 
 const robobtactionSchema = new Schema({
 
-    direction: {
+    x: {
         type:String,
         required: true,
-        
-
     },
-    distance: {
+    y: {
         type: Number,
         required: true,
-
     },
-    speed: {
-        type: Number,
-        required: true,
-
-    }
 },
 {
     timestamps: true
