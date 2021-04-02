@@ -60,20 +60,12 @@ class Main extends Component {
      
 
     };
-    this.login= this.login.bind(this);
+   
 
   }
 
 
-  login(){
-
-   return (
-
-    <Login auth={this.props.auth} loginUser={this.props.loginUser} logoutUser={this.props.logoutUser} /> 
-
-   )
-
-  }
+  
 
   render() {
 
@@ -85,7 +77,12 @@ class Main extends Component {
         <Header auth={this.props.auth} 
           loginUser={this.props.loginUser} 
           logoutUser={this.props.logoutUser} 
-          /> 
+        /> 
+
+
+
+        
+         
 
 
 
@@ -94,13 +91,25 @@ class Main extends Component {
             <Switch>
 
 
+            <Route exact path="/login" render={(props) => <Login auth={this.props.auth} 
+          loginUser={this.props.loginUser} 
+          logoutUser={this.props.logoutUser}  {...props} /> } />
 
+
+          
+        <Route exact path="/nipple" render={(props) => <App auth={this.props.auth} 
+          loginUser={this.props.loginUser} 
+          logoutUser={this.props.logoutUser}  {...props} /> } />
+
+
+             
+           
               <Route path='/home' component={Home} />
     
 
               <Route exact path='/contactus' component={Contact} />
 
-              <Route path= '/login' component={this.login}/>
+             
 
               <Route path= '/signup' component={SignUp}/>
 

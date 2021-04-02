@@ -40,19 +40,19 @@ client.on('message', function (topic, message) {
 });
 
 
-robotrouter.route('/alerts')
+// robotrouter.route('/alerts')
 
-.get((req, res, next) => {
+// .get((req, res, next) => {
      
-     res.statusCode = 200;
-     res.setHeader('Content-Type', 'application/json');
-     res.json(messages);
+//      res.statusCode = 200;
+//      res.setHeader('Content-Type', 'application/json');
+//      res.json(messages);
 
-     messages=null;
+//      messages=null;
      
            
      
-     });
+//      });
    
                  
                  

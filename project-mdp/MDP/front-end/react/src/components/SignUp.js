@@ -1,12 +1,10 @@
-import React from 'react';
-
-
-import {Redirect} from 'react-router-dom';
+import React, { Component } from 'react';
+import {
+   
+    Form, FormGroup, Input, Label
+} from 'reactstrap';
+import { Link } from 'react-router-dom';
 class SignUp extends React.Component{
-
-   
-
-   
 
     constructor(props) {
         super(props);
@@ -60,7 +58,7 @@ class SignUp extends React.Component{
        })
       .then(res => res.json())
 
-      return  <Redirect to="/home" /> 
+     
     
     
 
@@ -72,31 +70,57 @@ class SignUp extends React.Component{
 
     render(){
 
+
+
+
         return(
 
+            <React.Fragment>
+
             <div className='div-login'>
-
+    
                 <div className='div-login-logo'>
-
-                    <img src='/assets/images/robot.png' alt='robot'/>
-
+    
+                    <img src='/assets/images/robot.png' alt='robot' />
+    
                 </div>
-
+    
                 <div>
-
-                    <form >
-
-                        <input onChange={this.handleusername} name='email' placeholder='email...' />
-
-                        <input onChange={this.handlepassword}  name='pwd' placeholder='password...' />
-
+    
+                    <Form onSubmit={this.handleLogin}>
+    
+                        <FormGroup>
+    
+                            <Label htmlFor="username">Username</Label>
+    
+                            <Input onChange={this.handleusername} name='email' placeholder='email...'  />
+    
+                        </FormGroup>
+    
+                        <FormGroup>
+    
+                            <Label htmlFor="password">Password</Label>
+    
+                            <Input  onChange={this.handlepassword}  name='pwd' placeholder='password...' />
+    
+                        </FormGroup>
+    
+                        <FormGroup check>
+                        </FormGroup>
                         <button onClick={this.handleSubmit}>Sign UP</button>
-
-                    </form>
-
+    
+                        <p className="mt-3 mb-3 text-muted text-center">
+    
+                            already have an account ?<Link to="/login">log in</Link>
+    
+                        </p>
+    
+                    </Form>
+    
                 </div>
-
+    
             </div>
+        </React.Fragment>
 
         )
 
