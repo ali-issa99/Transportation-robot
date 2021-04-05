@@ -4,6 +4,7 @@ import {
     Form, FormGroup, Input, Label
 } from 'reactstrap';
 import { Link } from 'react-router-dom';
+import { findAllInRenderedTree } from 'react-dom/test-utils';
 
 class Login extends Component {
 
@@ -11,7 +12,8 @@ class Login extends Component {
         super(props);
         this.state = {
             isNavOpen: false,
-            isModalOpen: false
+            isModalOpen: false,
+            b:''
         };
         this.toggleNav = this.toggleNav.bind(this);
         this.toggleModal = this.toggleModal.bind(this);
@@ -30,11 +32,24 @@ class Login extends Component {
             isModalOpen: !this.state.isModalOpen
         });
     }
-
+     sleep = (milliseconds) => {
+        return new Promise(resolve => setTimeout(resolve, milliseconds))
+     }
+      
     handleLogin(event) {
         this.toggleModal();
-        this.props.loginUser({ username: this.username.value, password: this.password.value });
-        event.preventDefault();
+ 
+        this.props.loginUser({ username: this.username.value, password: this.password.value }); 
+       
+        setTimeout(() => {  if(localStorage.getItem('token')!=null) {this.props.history.push(`/home`)} 
+        else { alert("incorrect username or password  ") }  }, 300);
+       
+      
+       event.preventDefault();
+    
+
+       
+       
 
     }
 

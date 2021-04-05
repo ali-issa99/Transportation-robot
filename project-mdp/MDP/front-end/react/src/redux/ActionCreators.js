@@ -51,8 +51,13 @@ export const loginUser = (creds) => (dispatch) => {
             // If login was successful, set the token in local storage
             localStorage.setItem('token', response.token);
             localStorage.setItem('creds', JSON.stringify(creds));
+           
             // Dispatch the success action
+
+            
             dispatch(receiveLogin(response));
+           
+           
         }
         else {
             var error = new Error('Error ' + response.status);

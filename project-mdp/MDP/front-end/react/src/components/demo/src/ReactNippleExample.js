@@ -62,10 +62,6 @@ export default class ReactNippleExample extends Component {
                     onPressure={this.handleJoystickPressure}
                     onMove={(evt, data) =>
 
-                        
-                
-                        
-
                         fetch("http://localhost:9000/robot", {
                                 method: 'POST',
                                 headers: {
@@ -75,27 +71,16 @@ export default class ReactNippleExample extends Component {
                                  body: JSON.stringify({direction:JSON.stringify(data.direction).split(',')[0].split(':')[1] + JSON.stringify(data.direction).split(',')[1].split(':')[1],distance:data.force,speed:data.angle.degree}),
                                 // body: JSON.stringify({direction:this.state.direction,distance:this.state.distance,speed:this.state.speed})
                             })
-                       
-                     
-
-                      
-                            
-
-                                    
-                   
+                
+                                       
                   }
-                       
- 
-                    
+                                
                                  
                 />
                 </div>
                 <div className="col-12 col-sm-4 offset-sm-1">
                 <DebugView data={this.state.data}/>
                 </div>
-                
-            
-
 
             </div>
             </div>

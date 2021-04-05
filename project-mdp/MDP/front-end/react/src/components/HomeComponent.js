@@ -82,13 +82,6 @@ componentDidMount(){
         }
 
 
-
-        
-    
-        
-    
-
-
     Showstatistics() {
 
 
@@ -97,19 +90,11 @@ componentDidMount(){
             isclicked: !this.state.isclicked
         })
 
-     
-    
-        
+      
         
     }
 
   
-   
-     
-   
- 
-    
-    
 
     render() {
 
@@ -123,8 +108,7 @@ componentDidMount(){
                alert(this.state.alerts)
          }
         
-       
-      
+    
         return(
            
 

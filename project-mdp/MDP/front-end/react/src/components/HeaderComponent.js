@@ -4,8 +4,8 @@ import { Navbar, NavbarBrand, Nav, NavbarToggler, Collapse, NavItem, Jumbotron,
     Form, FormGroup, Input, Label } from 'reactstrap';
 import { NavLink } from 'react-router-dom';
 import { baseUrl } from '../shared/baseUrl';
-
-class Header extends Component {
+import { Link } from 'react-router-dom';
+class Header extends React.Component {
 
     constructor(props) {
         super(props);
@@ -39,7 +39,12 @@ class Header extends Component {
     }
 
     handleLogout() {
+        
+       
+
         this.props.logoutUser();
+       
+        
     }
 
     render() {
@@ -87,6 +92,7 @@ class Header extends Component {
                                         :
                                         <div>
                                         <div className="navbar-text mr-3">{this.props.auth.user.username}</div>
+                                        <Link to="/login">
                                         <Button outline onClick={this.handleLogout}>
                                             <span className="fa fa-sign-out fa-lg"></span> Logout
                                             {this.props.auth.isFetching ?
@@ -94,6 +100,7 @@ class Header extends Component {
                                                 : null
                                             }
                                         </Button>
+                                        </Link>
                                         </div>
                                     }
 
