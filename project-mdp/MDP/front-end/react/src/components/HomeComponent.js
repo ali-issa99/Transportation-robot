@@ -9,7 +9,6 @@ import { Navbar, NavbarBrand, Nav, NavbarToggler, Collapse, NavItem, Jumbotron,
 
 
 
-
 class  Home  extends Component {
 
     intervalID;
@@ -108,6 +107,7 @@ componentDidMount(){
                alert(this.state.alerts)
          }
         
+
     
         return(
            

@@ -5,7 +5,7 @@ import {
 } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import { findAllInRenderedTree } from 'react-dom/test-utils';
-
+import Header from './HeaderComponent';
 class Login extends Component {
 
     constructor(props) {
@@ -13,7 +13,8 @@ class Login extends Component {
         this.state = {
             isNavOpen: false,
             isModalOpen: false,
-            b:''
+            b:'',
+           
         };
         this.toggleNav = this.toggleNav.bind(this);
         this.toggleModal = this.toggleModal.bind(this);
@@ -59,7 +60,12 @@ class Login extends Component {
 
 
 render() {
+ 
+    
     return (
+
+        
+        
         <React.Fragment>
 
             <div className='div-login'>
@@ -113,7 +119,9 @@ render() {
                 </div>
 
             </div>
+           
         </React.Fragment>
+      
     );
 }
 }

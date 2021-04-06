@@ -6,13 +6,14 @@ import { Link } from 'react-router-dom';
 import ReactNipple from "react-nipple";
 import DebugView from "react-nipple/lib/DebugView";
 import "react-nipple/lib/styles.css";
-
+import Header from '../../HeaderComponent';
 export default class ReactNippleExample extends Component {
     static propTypes = {
         title: PropTypes.string,
         width: PropTypes.number,
         height: PropTypes.number,
-        options: PropTypes.object
+        options: PropTypes.object,
+      
     };
     state = {
         data: undefined,
@@ -25,7 +26,10 @@ export default class ReactNippleExample extends Component {
 
     render() {
 
-        
+        <Header auth={this.props.auth} 
+        loginUser={this.props.loginUser} 
+        logoutUser={this.props.logoutUser} 
+        /> 
        
         return (
 
@@ -43,12 +47,14 @@ export default class ReactNippleExample extends Component {
              </div>  
 
             <div className="NippleExample row row-content">
-            <div className="col-12 col-sm-4 offset-sm-1">
+            <div className="  ab col-12 col-sm-4 offset-sm-1">
                 <ReactNipple
                     className="joystick"
                     options={this.props.options}
                     style={{
-                        outline: `1px dashed ${this.props.options.color}`,
+
+                       
+                        
                         width: this.props.width,
                         height: this.props.height
                     }}
