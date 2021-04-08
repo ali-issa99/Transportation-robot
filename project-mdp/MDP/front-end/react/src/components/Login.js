@@ -44,7 +44,7 @@ class Login extends Component {
         this.props.loginUser({ username: this.username.value, password: this.password.value }); 
        
         setTimeout(() => {  if(localStorage.getItem('token')!=null) {this.props.history.push(`/home`)} 
-        else { alert("incorrect username or password  ") }  }, 300);
+        else { alert("incorrect username or password  ") }  }, 500);
        
       
        event.preventDefault();
