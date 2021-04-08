@@ -11,7 +11,7 @@ import Home from './HomeComponent';
 
 import Contact from './ContactComponent';
 
-import AboutComponent from './AboutComponent';
+import About from './AboutComponent';
 
 import Login from './Login';
 
@@ -27,9 +27,8 @@ import { actions } from 'react-redux-form';
 
 import { connect } from 'react-redux';
 
-import {loginUser, logoutUser } from '../redux/ActionCreators';
 
-
+import { loginUser, logoutUser } from '../redux/ActionCreators';
 
 
 
@@ -44,6 +43,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = (dispatch) => ({
   loginUser: (creds) => dispatch(loginUser(creds)),
+
   logoutUser: () => dispatch(logoutUser()),
 });
 
@@ -51,77 +51,52 @@ const mapDispatchToProps = (dispatch) => ({
 class Main extends Component {
 
 
-
-
-  constructor(props) {
-
-    super(props);
-
-    this.state = {
-
-     
-
-    };
-   
-
-  }
-
-
-  
-
   render() {
 
-    //men7ot exact 3ashain marat 3ena url fi /menu/...
+
+    let header = localStorage.getItem('token') ? <Header auth={this.props.auth}
+      loginUser={this.props.loginUser}
+      logoutUser={this.props.logoutUser}
+    />
+      : null
+    
     return (
 
       <div>
 
-        <Header auth={this.props.auth} 
-          loginUser={this.props.loginUser} 
-          logoutUser={this.props.logoutUser} 
-        /> 
-
-
-
-        
-         
-
-
+        <div>
+          {header}
+        </div>
 
         <TransitionGroup>
           <CSSTransition key={this.props.location.key} classNames="page" timeout={300}>
             <Switch>
 
 
-            <Route exact path="/login" render={(props) => <Login auth={this.props.auth} 
-          loginUser={this.props.loginUser} 
-          logoutUser={this.props.logoutUser}  {...props} /> } />
+              <Route exact path="/login" render={(props) => <Login auth={this.props.auth}
+                loginUser={this.props.loginUser}
+                logoutUser={this.props.logoutUser}  {...props} />} />
 
 
-          
-        <Route exact path="/nipple" render={(props) => <App auth={this.props.auth} 
-          loginUser={this.props.loginUser} 
-          logoutUser={this.props.logoutUser}  {...props} /> } />
+              <Route exact path="/nipple" render={(props) => <App auth={this.props.auth}
+                loginUser={this.props.loginUser}
+                logoutUser={this.props.logoutUser}  {...props} />} />
 
 
-             
-           
               <Route path='/home' component={Home} />
-    
+
 
               <Route exact path='/contactus' component={Contact} />
 
-             
+             <Route path='/signup' component={SignUp} />
 
-              <Route path= '/signup' component={SignUp}/>
+              <Route path='/manual' component={App} />
 
-              <Route path='/manual' component={App} /> 
+              <Route exact path='/aboutus' component={About} />
 
-              <Route path='/aboutus' component={AboutComponent} /> 
+              <Redirect to='/login' />
 
-              <Redirect to='/login'/> 
-
-          </Switch>
+            </Switch>
           </CSSTransition>
         </TransitionGroup>
 
@@ -131,10 +106,10 @@ class Main extends Component {
 
     );
 
-   }
-
   }
 
-  
+}
 
-  export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Main));
+
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Main));

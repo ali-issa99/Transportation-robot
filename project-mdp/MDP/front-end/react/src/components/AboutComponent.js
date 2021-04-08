@@ -2,22 +2,15 @@ import React from 'react';
 import { Breadcrumb, BreadcrumbItem, Card, CardBody, CardHeader, Media } from 'reactstrap';
 import { Link } from 'react-router-dom';
 
-
-
-
-
-
-
+import { baseUrl } from '../shared/baseUrl';
+import { Fade, Stagger } from 'react-animation-components';
 
 
 
 
 function About(props) {
 
-    
-
     return(
-   
         <div className="container">
             <div className="row">
                 <Breadcrumb>
@@ -67,14 +60,9 @@ function About(props) {
                     </Card>
                 </div>
             </div>
-            <div className="row row-content">
-                <div className="col-12">
-                    <h2>Corporate Leadership</h2>
-                </div>
-               
-            </div>
+           
         </div>
     );
 }
 
-export default About;   
+export default About;  

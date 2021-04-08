@@ -32,9 +32,7 @@ export default class ReactNippleExample extends Component {
         /> 
        
         return (
-
-            
-            <div className="container">
+          <div className="container">
             <div className="row">
                 <Breadcrumb>
                    <BreadcrumbItem><Link to="/home">Home</Link></BreadcrumbItem>
@@ -51,10 +49,8 @@ export default class ReactNippleExample extends Component {
                 <ReactNipple
                     className="joystick"
                     options={this.props.options}
-                    style={{
-
-                       
-                        
+                    style={{  
+                                          
                         width: this.props.width,
                         height: this.props.height
                     }}
@@ -68,15 +64,21 @@ export default class ReactNippleExample extends Component {
                     onPressure={this.handleJoystickPressure}
                     onMove={(evt, data) =>
 
-                        fetch("http://localhost:9000/robot", {
-                                method: 'POST',
-                                headers: {
-                                    'Content-Type': 'application/json',
-                                    'Authorization': 'Bearer ' + localStorage.getItem('token'),
-                                },
-                                 body: JSON.stringify({direction:JSON.stringify(data.direction).split(',')[0].split(':')[1] + JSON.stringify(data.direction).split(',')[1].split(':')[1],distance:data.force,speed:data.angle.degree}),
-                                // body: JSON.stringify({direction:this.state.direction,distance:this.state.distance,speed:this.state.speed})
-                            })
+                       
+                        console.log((data))
+                        // fetch("http://localhost:9000/robot", {
+                        //         method: 'POST',
+                        //         headers: {
+                        //             'Content-Type': 'application/json',
+                        //             'Authorization': 'Bearer ' + localStorage.getItem('token'),
+                        //         },
+                        //          body: JSON.stringify({direction:JSON.stringify(data.direction).split(',')[0].split(':')[1] + JSON.stringify(data.direction).split(',')[1].split(':')[1],distance:data.force,speed:data.angle.degree}),
+                        //         // body: JSON.stringify({direction:this.state.direction,distance:this.state.distance,speed:this.state.speed})
+                        //     })
+
+                            
+
+
                 
                                        
                   }

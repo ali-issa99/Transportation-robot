@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 
 import {  Form, FormGroup, Input, Label
 } from 'reactstrap';
+
+
+import { NavLink, withRouter } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 class SignUp extends React.Component {
 
@@ -118,4 +121,4 @@ class SignUp extends React.Component {
 
 
 
-export default SignUp;
+export default withRouter(SignUp);

@@ -125,8 +125,19 @@ input{
 }
 
 
+.contain2{
+ 
+ position: absolute;
+ top:0px;
+ left:0px;
+ right:300px;
+  
 
-button{
+
+
+
+}
+/* button{
 
     width: 100%;
 
@@ -146,4 +157,4 @@ button{
 
     border-radius: 5px;
 
-}
+} */
