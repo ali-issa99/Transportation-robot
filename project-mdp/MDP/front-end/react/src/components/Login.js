@@ -1,11 +1,12 @@
-import React, { Component } from 'react';
+import React, { Component, useRef, useEffect } from 'react';
 import {
    
     Form, FormGroup, Input, Label
 } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import { findAllInRenderedTree } from 'react-dom/test-utils';
-import Header from './HeaderComponent';
+import {TweenMax} from 'gsap';
+
 class Login extends Component {
 
     constructor(props) {
@@ -13,13 +14,13 @@ class Login extends Component {
         this.state = {
             isNavOpen: false,
             isModalOpen: false,
-            b:'',
-           
+            b:''
         };
         this.toggleNav = this.toggleNav.bind(this);
         this.toggleModal = this.toggleModal.bind(this);
         this.handleLogin = this.handleLogin.bind(this);
         this.handleLogout = this.handleLogout.bind(this);
+        
     }
 
     toggleNav() {
@@ -58,72 +59,74 @@ class Login extends Component {
         this.props.logoutUser();
     }
 
+    Logpage(){};
+    
+    
+    
+
 
 render() {
- 
-    
     return (
-
-        
-        
         <React.Fragment>
+                <div className="wrapper">
+                    <div className="separate" id="start">
+                        <div className="banner">
+                            <img src='/assets/images/signin.png' alt='robot' />
+                        </div>
+                    </div>
+                    <div className="separate" id="form-section">
+                        <div className="form-style">
+                            <div className="logo">
+                                <img src='/assets/images/robot.png' alt='logo' />
+                            </div>
+                            <h2>Welcome to My Robot</h2>
+                            <Form onSubmit={this.handleLogin}>
 
-            <div className='div-login'>
-
-                <div className='div-login-logo'>
-
-                    <img src='/assets/images/robot.png' alt='robot' />
-
+                                <FormGroup className='fields'>
+    
+                                    <Label htmlFor="username">Username</Label>
+    
+                                    <Input type="text" id="username" name="username"
+    
+                                        innerRef={(input) => this.username = input} />
+    
+                                </FormGroup>
+    
+                                <FormGroup className='fields'>
+    
+                                    <Label htmlFor="password">Password</Label>
+    
+                                    <Input type="password" id="password" name="password"
+    
+                                        innerRef={(input) => this.password = input} />
+    
+                                </FormGroup>
+    
+                                <FormGroup check>
+                                </FormGroup>
+                                <button className="submit-btn" type="submit">
+    
+                                    Sign in
+    
+                                </button>
+    
+                                <p className="mt-3 mb-3 text-muted text-center">
+    
+                                    No account ? <Link to="/signup">Create one here</Link>
+    
+                                </p>
+    
+                            </Form>
+                        </div>
+                    </div>
                 </div>
 
-                <div>
-
-                    <Form onSubmit={this.handleLogin}>
-
-                        <FormGroup>
-
-                            <Label htmlFor="username">Username</Label>
-
-                            <Input type="text" id="username" name="username"
-
-                                innerRef={(input) => this.username = input} />
-
-                        </FormGroup>
-
-                        <FormGroup>
-
-                            <Label htmlFor="password">Password</Label>
-
-                            <Input type="password" id="password" name="password"
-
-                                innerRef={(input) => this.password = input} />
-
-                        </FormGroup>
-
-                        <FormGroup check>
-                        </FormGroup>
-                        <button className="btn btn-lg btn-primary btn-block" type="submit">
-
-                            Sign in
-
-                        </button>
-
-                        <p className="mt-3 mb-3 text-muted text-center">
-
-                            No account ? <Link to="/signup">Create one here</Link>
-
-                        </p>
-
-                    </Form>
-
-                </div>
-
-            </div>
-           
+            
         </React.Fragment>
-      
     );
 }
 }
+
+
 
 export default Login;

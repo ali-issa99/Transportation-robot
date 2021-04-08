@@ -65,30 +65,23 @@ export default class ReactNippleExample extends Component {
                     onMove={(evt, data) =>
 
                        
-                        console.log((data))
-                        // fetch("http://localhost:9000/robot", {
-                        //         method: 'POST',
-                        //         headers: {
-                        //             'Content-Type': 'application/json',
-                        //             'Authorization': 'Bearer ' + localStorage.getItem('token'),
-                        //         },
-                        //          body: JSON.stringify({direction:JSON.stringify(data.direction).split(',')[0].split(':')[1] + JSON.stringify(data.direction).split(',')[1].split(':')[1],distance:data.force,speed:data.angle.degree}),
-                        //         // body: JSON.stringify({direction:this.state.direction,distance:this.state.distance,speed:this.state.speed})
-                        //     })
-
-                            
-
-
-                
+                      
+                        fetch("http://localhost:9000/robot", {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                    'Authorization': 'Bearer ' + localStorage.getItem('token'),
+                                },
+                                 body: JSON.stringify({mode:"manual",x:parseInt(data.position.x),y:parseInt(data.position.y)})
+                              
+                            })             
                                        
                   }
                                 
                                  
                 />
                 </div>
-                <div className="col-12 col-sm-4 offset-sm-1">
-                <DebugView data={this.state.data}/>
-                </div>
+                
 
             </div>
             </div>

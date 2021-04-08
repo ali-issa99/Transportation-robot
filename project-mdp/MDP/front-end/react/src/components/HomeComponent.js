@@ -19,7 +19,7 @@ class Home extends Component {
         super(props);
         this.state = {
             moves: [
-                { direction: String, distance: String, speed: Number }
+                { mode: String, x: Number, y: Number }
             ], isclicked: false, alerts: String, isalert: false
         };
         this.Showstatistics = this.Showstatistics.bind(this);
@@ -100,15 +100,15 @@ class Home extends Component {
 
     render() {
 
-        // if(this.state.isalert)  {
+        if(this.state.isalert)  {
 
-        //        this.setState({
-        //         isalert: false
+               this.setState({
+                isalert: false
 
-        //        });
+               });
 
-        //        alert(this.state.alerts)
-        //  }
+               alert(this.state.alerts)
+         }
 
 
 
@@ -176,18 +176,19 @@ class Home extends Component {
                         <Table striped bordered hover variant="dark">
                             <thead>
                                 <tr>
-                                    <th>Distance </th>
-                                    <th>Force</th>
-                                    <th>Angle</th>
+                                    <th>mode </th>
+                                    <th>x</th>
+                                    <th>y</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 {this.state.moves.map(function (item, key) {
                                     return (
                                         <tr key={key}>
-                                            <td>{item.direction}</td>
-                                            <td>{item.distance}</td>
-                                            <td>{item.speed}</td>
+                                          
+                                            <td>{item.mode}</td>
+                                            <td>{item.x}</td>
+                                            <td>{item.y}</td>
                                         </tr>
                                     )
                                 })}

@@ -2,9 +2,6 @@ import React, { Component } from 'react';
 
 import {  Form, FormGroup, Input, Label
 } from 'reactstrap';
-
-
-import { NavLink, withRouter } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 class SignUp extends React.Component {
 
@@ -63,54 +60,57 @@ class SignUp extends React.Component {
 
     render() {
 
-
         return (
 
             <React.Fragment>
-
-                <div className='div-login'>
-
-                    <div className='div-login-logo'>
-
-                        <img src='/assets/images/robot.png' alt='robot' />
-
+                <div className="wrapper">
+                    <div className="separate" id="start">
+                        <div className="banner">
+                            <img src='/assets/images/signup.png' alt='robot' />
+                        </div>
                     </div>
+                    <div className="separate" id="form-section">
+                        <div className="form-style">
+                            <div className="logo">
+                                <img src='/assets/images/robot.png' alt='logo' />
+                            </div>
+                            <h2>Welcome to My Robot</h2>
+                            <Form onSubmit={this.handleLogin}>
 
-                    <div>
+                                <FormGroup className='fields'>
 
-                        <Form onSubmit={this.handleLogin}>
+                                    <Label htmlFor="username">Username</Label>
 
-                            <FormGroup>
+                                    <Input onChange={this.handleusername} name='email' placeholder='email...' />
 
-                                <Label htmlFor="username">Username</Label>
+                                </FormGroup>
 
-                                <Input onChange={this.handleusername} name='email' placeholder='email...' />
+                                <FormGroup className='fields'>
 
-                            </FormGroup>
+                                    <Label htmlFor="password">Password</Label>
 
-                            <FormGroup>
+                                    <Input onChange={this.handlepassword} name='pwd' placeholder='password...' />
 
-                                <Label htmlFor="password">Password</Label>
+                                </FormGroup>
 
-                                <Input onChange={this.handlepassword} name='pwd' placeholder='password...' />
+                                <FormGroup check>
+                                </FormGroup>
+                                <button className="submit-btn" type="submit" onClick={this.handleSubmit}>
 
-                            </FormGroup>
+                                    Sign up
 
-                            <FormGroup check>
-                            </FormGroup>
-                            <button onClick={this.handleSubmit}>Sign UP</button>
+                                </button>
 
-                            <p className="mt-3 mb-3 text-muted text-center">
+                                <p className="mt-3 mb-3 text-muted text-center">
 
-                                already have an account ?<Link to="/login">log in</Link>
+                                    already have an account ?<Link to="/login">log in</Link>
 
-                            </p>
+                                </p>
 
-                        </Form>
-
+                            </Form>
+                        </div>
                     </div>
-
-                </div>
+                </div>        
             </React.Fragment>
 
         )
@@ -121,4 +121,4 @@ class SignUp extends React.Component {
 
 
 
-export default withRouter(SignUp);
+export default SignUp;

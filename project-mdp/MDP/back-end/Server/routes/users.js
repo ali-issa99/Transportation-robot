@@ -49,6 +49,10 @@ router.get('/facebook/token', passport.authenticate('facebook-token'), (req, res
       res.json({success: true, token: token, status: 'You are successfully logged in!'});
   }
 });
+
+
+
+
 // router.get('/logout', (req, res) => {
 //   if (req.session) {
 //     req.session.destroy();

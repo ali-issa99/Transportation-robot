@@ -12,6 +12,7 @@
     "bootstrap": "^4.6.0",
     "bootstrap-social": "5.1.1",
     "font-awesome": "4.7.0",
+    "gsap": "^3.6.1",
     "react": "^17.0.1",
     "react-alert": "^7.0.2",
     "react-animation": "^1.2.2",
