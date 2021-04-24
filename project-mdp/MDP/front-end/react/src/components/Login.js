@@ -41,18 +41,15 @@ class Login extends Component {
     handleLogin(event) {
         this.toggleModal();
  
-        this.props.loginUser({ username: this.username.value, password: this.password.value }); 
-       
-        setTimeout(() => {  if(localStorage.getItem('token')!=null) {this.props.history.push(`/home`)} 
-        else { alert("incorrect username or password  ") }  }, 500);
-       
+        this.props.loginUser({ username: this.username.value, password: this.password.value })
+       .then(
+             token =>   {  if(localStorage.getItem('token')!=null) {this.props.history.push(`/home`)} 
+             else { alert("incorrect username or password  ") }  }
+
+
+       )
+     event.preventDefault();
       
-       event.preventDefault();
-    
-
-       
-       
-
     }
 
     handleLogout() {

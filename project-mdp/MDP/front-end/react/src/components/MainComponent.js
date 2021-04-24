@@ -23,7 +23,7 @@ import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
 
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 
-import { actions } from 'react-redux-form';
+
 
 import { connect } from 'react-redux';
 

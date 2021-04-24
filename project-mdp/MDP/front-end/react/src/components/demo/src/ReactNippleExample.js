@@ -20,6 +20,7 @@ export default class ReactNippleExample extends Component {
         direction: Number,
         distance :Number,
         speed:Number,
+        moved:Boolean
         
         
     };
@@ -64,6 +65,8 @@ export default class ReactNippleExample extends Component {
                     onPressure={this.handleJoystickPressure}
                     onMove={(evt, data) =>
 
+
+
                        
                       
                         fetch("http://localhost:9000/robot", {
@@ -72,7 +75,7 @@ export default class ReactNippleExample extends Component {
                                     'Content-Type': 'application/json',
                                     'Authorization': 'Bearer ' + localStorage.getItem('token'),
                                 },
-                                 body: JSON.stringify({mode:"manual",x:parseInt(data.position.x),y:parseInt(data.position.y)})
+                                 body: JSON.stringify({x:parseInt(data.position.x)-250,y:parseInt(data.position.y)-280})
                               
                             })             
                                        

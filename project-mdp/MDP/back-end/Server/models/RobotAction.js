@@ -6,11 +6,7 @@ require('mongoose-currency').loadType(mongoose);
 
 
 const robobtactionSchema = new Schema({
-    mode:{
-    type:String,
-    required:true
-
-    },
+    
     x: {
         type:Number,
         required: true,
@@ -19,6 +15,7 @@ const robobtactionSchema = new Schema({
         type:Number,
         required: true,
     },
+ 
    
 
 },
